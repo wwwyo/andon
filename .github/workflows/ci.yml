@@ -1,0 +1,36 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  mac:
+    name: mac (swift build)
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: apps/mac
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - run: swift --version
+      - run: swift build
+
+  api:
+    name: api (typecheck)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: jdx/mise-action@v5.2.8
+        with:
+          install_args: bun node
+      - run: bun install --frozen-lockfile
+      - run: bun run check

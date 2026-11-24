@@ -1,0 +1,13 @@
+{
+  "name": "andon",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/api"
+  ],
+  "scripts": {
+    "api:dev": "bun run --cwd apps/api dev",
+    "check": "bun run --cwd apps/api check"
+  }
+}

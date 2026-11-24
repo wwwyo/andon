@@ -1,0 +1,20 @@
+{
+  "name": "@andon/api",
+  "private": true,
+  "type": "module",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "cf dev --mode development",
+    "build": "cf build",
+    "check": "cf workers types && tsc --noEmit"
+  },
+  "dependencies": {
+    "hono": "4.13.19"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "2.0.0-rc.1",
+    "cf": "1.0.0-rc.0",
+    "typescript": "7.0.2",
+    "vite": "8.3.8"
+  }
+}
