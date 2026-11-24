@@ -18,6 +18,24 @@
       "source": "honojs/skills",
       "sourceType": "github"
     },
+    "macos-spm-app-packaging": {
+      "computedHash": "dd9fba9ca23b45f1c12db08470da9726b294bd6fb334f63d3447872efdf392c3",
+      "skillPath": "macos-spm-app-packaging/SKILL.md",
+      "source": "dimillian/skills",
+      "sourceType": "github"
+    },
+    "swift-concurrency": {
+      "computedHash": "d23059e1032d850abb86af0343326e4e96810cdb4d3dd6237558e638f84be16c",
+      "skillPath": "skills/swift-concurrency/SKILL.md",
+      "source": "avdlee/swift-concurrency-agent-skill",
+      "sourceType": "github"
+    },
+    "swiftui-expert-skill": {
+      "computedHash": "b8f57fdb06ccc7c2a70c3836dc96b38408ca2d84c977a0b6804dc68f752289db",
+      "skillPath": "skills/swiftui-expert-skill/SKILL.md",
+      "source": "avdlee/swiftui-agent-skill",
+      "sourceType": "github"
+    },
     "workers-best-practices": {
       "computedHash": "afc1b560659bcbbf043741e04a865b99e7d5b094bf62573d6188a8b26de235ab",
       "skillPath": "skills/workers-best-practices/SKILL.md",

@@ -11,7 +11,7 @@
 
 ## QuickStart
 
-macOS で [mise](https://mise.jdx.dev/) と Command Line Tools（`xcode-select --install`）を使います。Xcode は要りません。
+macOS で [mise](https://mise.jdx.dev/) と Xcode を使います。
 
 ```bash
 mise install && bun install

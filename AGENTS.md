@@ -32,7 +32,7 @@ docs/ は共有文書として Git で管理する。個人のメモは gitignor
 
 ## セットアップ
 
-ツールは mise で管理している。Swift は Xcode ではなく Command Line Tools のものを使う。
+ツールは mise で管理している。apps/mac のビルドには Xcode が要る（`xcode-select -s /Applications/Xcode.app` で Xcode の toolchain を選ぶ）。
 
 ```bash
 mise install    # bun・node・swiftformat
@@ -45,7 +45,7 @@ bun run api:dev                           # api を http://127.0.0.1:8787 で起
 bun run check                             # api の型検査
 ```
 
-- Command Line Tools だけの環境では、SDK がマクロとして提供する SwiftUI の `@State`・`#Preview` などがビルドできない（マクロの plugin が Xcode にしか無い）。状態は `@Observable` の model に持たせる
+- SwiftUI は標準の書き方（`@State`・`#Preview`・SwiftData の `@Model` など）で書く。Command Line Tools だけの環境ではこれらのマクロがビルドできないが、環境に合わせて実装を曲げず、Xcode を入れて解決する
 - api の deploy・本番リソースの作成・secret の登録は、ユーザーの許可を得てから行う
 
 ## 技術スタック
@@ -60,7 +60,7 @@ bun run check                             # api の型検査
 
 ### 外部 skill
 
-`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。upstream の license は `.agents/licenses/` に置く（cloudflare/skills は Apache-2.0、honojs/skills は MIT）。
+`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。upstream の license は `.agents/licenses/` に置く（cloudflare/skills は Apache-2.0、それ以外は MIT）。
 
 | skill | 使う場面 | 取得元（commit） |
 |---|---|---|
@@ -68,5 +68,10 @@ bun run check                             # api の型検査
 | `workers-best-practices` | apps/api の Worker の実装・レビュー・設定 | cloudflare/skills（`14472d5`） |
 | `cf-cli` | `cf` CLI でのリソース操作・dev・build・deploy | cloudflare/skills（`14472d5`） |
 | `hono` | apps/api のルーティング・middleware・validation・RPC・テスト | honojs/skills（`e54ce51`） |
+| `swiftui-expert-skill` | apps/mac の SwiftUI の実装・レビュー（`@Observable` のデータフロー・レイアウト・性能） | avdlee/swiftui-agent-skill（`62bd760`） |
+| `swift-concurrency` | async/await・actor・`Sendable`・Swift 6 の並行処理の診断 | avdlee/swift-concurrency-agent-skill（`3b1580d`） |
+| `macos-spm-app-packaging` | Xcode プロジェクト無しで SwiftPM の macOS アプリを .app にまとめる・署名・notarize | dimillian/skills（`05ba982`） |
 
 - これらの skill が Wrangler や `npm install --global cf` を案内しても、この repo では `apps/api` の devDependency の `cf` を `bun run` から使い、Wrangler の設定ファイルは足さない
+- apps/mac は `.xcodeproj` を作らず `Package.swift` で管理する。ビルドは Xcode の toolchain で `swift build` / `swift run`、または Xcode で `Package.swift` を開く。Swift の skill の指針（`@State` など）はそのまま従う
+  - `macos-spm-app-packaging` の署名・notarize・Keychain に証明書を入れる template（`setup_dev_signing.sh`・`sign-and-notarize.sh`）は、ユーザーの許可を得てから実行する
