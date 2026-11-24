@@ -1,0 +1,29 @@
+version: 2
+updates:
+  - package-ecosystem: swift
+    directory: /apps/mac
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      swift:
+        update-types: [minor, patch]
+  - package-ecosystem: bun
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      bun:
+        update-types: [minor, patch]
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      github-actions:
+        update-types: [minor, patch]
