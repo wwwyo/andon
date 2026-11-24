@@ -60,7 +60,7 @@ bun run check                             # api の型検査
 
 ### 外部 skill
 
-`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。upstream の license は `.agents/licenses/` に置く（cloudflare/skills は Apache-2.0、honojs/skills は MIT）。
+`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。upstream の license は `.agents/licenses/` に置く（cloudflare/skills は Apache-2.0、それ以外は MIT）。
 
 | skill | 使う場面 | 取得元（commit） |
 |---|---|---|
@@ -68,5 +68,12 @@ bun run check                             # api の型検査
 | `workers-best-practices` | apps/api の Worker の実装・レビュー・設定 | cloudflare/skills（`14472d5`） |
 | `cf-cli` | `cf` CLI でのリソース操作・dev・build・deploy | cloudflare/skills（`14472d5`） |
 | `hono` | apps/api のルーティング・middleware・validation・RPC・テスト | honojs/skills（`e54ce51`） |
+| `swiftui-expert-skill` | apps/mac の SwiftUI の実装・レビュー（`@Observable` のデータフロー・レイアウト・性能） | avdlee/swiftui-agent-skill（`62bd760`） |
+| `swift-concurrency` | async/await・actor・`Sendable`・Swift 6 の並行処理の診断 | avdlee/swift-concurrency-agent-skill（`3b1580d`） |
+| `macos-spm-app-packaging` | Xcode プロジェクト無しで SwiftPM の macOS アプリを .app にまとめる・署名・notarize | dimillian/skills（`05ba982`） |
 
 - これらの skill が Wrangler や `npm install --global cf` を案内しても、この repo では `apps/api` の devDependency の `cf` を `bun run` から使い、Wrangler の設定ファイルは足さない
+- この Mac には Xcode が無く Command Line Tools だけがある。apps/mac は `.xcodeproj` を作らず `Package.swift` と `swift build` / `swift run` で作る。Swift の skill が Xcode を前提にする手順は使わない
+  - `@State`・`#Preview`・SwiftData の `@Model` などのマクロはビルドできない。`swiftui-expert-skill` の `@State` の指針は、状態を `@Observable` の model に持つ形に読み替える
+  - Instruments・`xctrace` を使う性能計測（`swiftui-expert-skill` の scripts）と、`macos-spm-app-packaging` の `build_icon.sh`（Icon Composer）は Xcode が要るので使えない
+  - `macos-spm-app-packaging` の署名・notarize・Keychain に証明書を入れる template（`setup_dev_signing.sh`・`sign-and-notarize.sh`）は、ユーザーの許可を得てから実行する
