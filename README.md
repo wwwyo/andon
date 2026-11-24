@@ -1,8 +1,9 @@
 # Andon
 
+[![CI](https://github.com/wwwyo/andon/actions/workflows/ci.yml/badge.svg)](https://github.com/wwwyo/andon/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-本を読んでいて難しい概念（たとえば SF に出てくる量子力学）に当たったとき、読んでいる画面からそのまま聞くと、図と短い解説で「その場面を読むのに要る深さだけ」教えてくれる読書アプリです。解説は概念カードとして溜まり、別の本で同じ概念に出会うと前の出会いとつながります。
+本を読んでいて難しい概念（たとえば SF に出てくる量子力学）に当たったとき、読んでいる画面からそのまま聞くと、図と短い解説で「その場面を読むのに要る深さだけ」教えてくれる読書アプリです。解説は概念カードとして溜まり、別の本で同じ概念に出会うと前のチャットとつながります。
 
 名前は行灯（あんどん）から。江戸の人が夜に本を読んだ紙の灯りです。
 
