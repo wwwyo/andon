@@ -53,10 +53,6 @@ bun run check                             # api の型検査
 - apps/mac: Swift 6・SwiftUI・SwiftPM（macOS 14+）
 - apps/api: TypeScript・Hono・Cloudflare Workers（`cf` CLI と `cloudflare.config.ts`）・bun
 
-## Pullfrog の個別設定
-
-この repo の Pullfrog 設定は [`.github/pullfrog.config.sh`](.github/pullfrog.config.sh) が正本。初回レビューは自動、追加コミットの再レビューは無効。追加レビューは必要時に `@pullfrog` で依頼する。model・effort は org 共通設定（dotfiles の `.github/pullfrog.org.config.sh`）を継承する。
-
 ## Skills
 
 - 機能の要件を決めるときは `prd` skill、戻すのが難しい判断は `document` skill の ADR 形式で docs/adr/ に残す
