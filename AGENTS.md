@@ -60,7 +60,7 @@ bun run check                             # api の型検査
 
 ### 外部 skill
 
-`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。
+`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。upstream の license は `.agents/licenses/` に置く（cloudflare/skills は Apache-2.0、honojs/skills は MIT）。
 
 | skill | 使う場面 | 取得元（commit） |
 |---|---|---|
