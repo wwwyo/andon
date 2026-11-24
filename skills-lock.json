@@ -1,0 +1,29 @@
+{
+  "skills": {
+    "cf-cli": {
+      "computedHash": "439ebbec66d43c5bf28dea7468625c118c136cb810e09a8ef8dcc33184a990b3",
+      "skillPath": "skills/cf-cli/SKILL.md",
+      "source": "cloudflare/skills",
+      "sourceType": "github"
+    },
+    "cloudflare": {
+      "computedHash": "1cce94a0fea413a5d5f9dd18d2a72cd90e925017c791eb6554be14f5bb777576",
+      "skillPath": "skills/cloudflare/SKILL.md",
+      "source": "cloudflare/skills",
+      "sourceType": "github"
+    },
+    "hono": {
+      "computedHash": "f469bac28a53d010bb47bd61109d0cfebe9a4f3fd407310746114549886b5870",
+      "skillPath": "skills/hono/SKILL.md",
+      "source": "honojs/skills",
+      "sourceType": "github"
+    },
+    "workers-best-practices": {
+      "computedHash": "afc1b560659bcbbf043741e04a865b99e7d5b094bf62573d6188a8b26de235ab",
+      "skillPath": "skills/workers-best-practices/SKILL.md",
+      "source": "cloudflare/skills",
+      "sourceType": "github"
+    }
+  },
+  "version": 1
+}
