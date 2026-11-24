@@ -57,3 +57,16 @@ bun run check                             # api の型検査
 
 - 機能の要件を決めるときは `prd` skill、戻すのが難しい判断は `document` skill の ADR 形式で docs/adr/ に残す
 - 学び・ハマりどころ・過去の失敗は `.agents/skills/<topic>/` を参照
+
+### 外部 skill
+
+`skillctrl` で取り込んだ upstream のコピーで、中身は書き換えない。取得元と hash は `skills-lock.json`・`.agents/skillctrl/lock.json` が正本。更新は `skillctrl update`、Claude Code へは `.claude/skills/<name>` の相対 symlink で渡す。upstream の license は `.agents/licenses/` に置く（cloudflare/skills は Apache-2.0、honojs/skills は MIT）。
+
+| skill | 使う場面 | 取得元（commit） |
+|---|---|---|
+| `cloudflare` | Cloudflare の製品選定（D1・KV・R2・AI Gateway など） | cloudflare/skills（`14472d5`） |
+| `workers-best-practices` | apps/api の Worker の実装・レビュー・設定 | cloudflare/skills（`14472d5`） |
+| `cf-cli` | `cf` CLI でのリソース操作・dev・build・deploy | cloudflare/skills（`14472d5`） |
+| `hono` | apps/api のルーティング・middleware・validation・RPC・テスト | honojs/skills（`e54ce51`） |
+
+- これらの skill が Wrangler や `npm install --global cf` を案内しても、この repo では `apps/api` の devDependency の `cf` を `bun run` から使い、Wrangler の設定ファイルは足さない
