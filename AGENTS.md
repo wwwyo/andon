@@ -32,7 +32,7 @@ docs/ は共有文書として Git で管理する。個人のメモは gitignor
 
 ## セットアップ
 
-ツールは mise で管理している。Swift は Xcode ではなく Command Line Tools のものを使う。
+ツールは mise で管理している。apps/mac のビルドには Xcode が要る（`xcode-select -s /Applications/Xcode.app` で Xcode の toolchain を選ぶ）。
 
 ```bash
 mise install    # bun・node・swiftformat
@@ -45,7 +45,7 @@ bun run api:dev                           # api を http://127.0.0.1:8787 で起
 bun run check                             # api の型検査
 ```
 
-- Command Line Tools だけの環境では、SDK がマクロとして提供する SwiftUI の `@State`・`#Preview` などがビルドできない（マクロの plugin が Xcode にしか無い）。状態は `@Observable` の model に持たせる
+- SwiftUI は標準の書き方（`@State`・`#Preview`・SwiftData の `@Model` など）で書く。Command Line Tools だけの環境ではこれらのマクロがビルドできないが、環境に合わせて実装を曲げず、Xcode を入れて解決する
 - api の deploy・本番リソースの作成・secret の登録は、ユーザーの許可を得てから行う
 
 ## 技術スタック
@@ -73,7 +73,5 @@ bun run check                             # api の型検査
 | `macos-spm-app-packaging` | Xcode プロジェクト無しで SwiftPM の macOS アプリを .app にまとめる・署名・notarize | dimillian/skills（`05ba982`） |
 
 - これらの skill が Wrangler や `npm install --global cf` を案内しても、この repo では `apps/api` の devDependency の `cf` を `bun run` から使い、Wrangler の設定ファイルは足さない
-- この Mac には Xcode が無く Command Line Tools だけがある。apps/mac は `.xcodeproj` を作らず `Package.swift` と `swift build` / `swift run` で作る。Swift の skill が Xcode を前提にする手順は使わない
-  - `@State`・`#Preview`・SwiftData の `@Model` などのマクロはビルドできない。`swiftui-expert-skill` の `@State` の指針は、状態を `@Observable` の model に持つ形に読み替える
-  - Instruments・`xctrace` を使う性能計測（`swiftui-expert-skill` の scripts）と、`macos-spm-app-packaging` の `build_icon.sh`（Icon Composer）は Xcode が要るので使えない
+- apps/mac は `.xcodeproj` を作らず `Package.swift` で管理する。ビルドは Xcode の toolchain で `swift build` / `swift run`、または Xcode で `Package.swift` を開く。Swift の skill の指針（`@State` など）はそのまま従う
   - `macos-spm-app-packaging` の署名・notarize・Keychain に証明書を入れる template（`setup_dev_signing.sh`・`sign-and-notarize.sh`）は、ユーザーの許可を得てから実行する

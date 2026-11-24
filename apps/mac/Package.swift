@@ -1,5 +1,5 @@
 // swift-tools-version: 6.0
-// macOS アプリ。Xcode なし（Command Line Tools）の swift build で通す。
+// macOS アプリ。Xcode の toolchain で swift build する（.xcodeproj は作らない）。
 // iOS を足すときは、共有するコードをここの library target に切り出して apps/ios から使う。
 import PackageDescription
 
