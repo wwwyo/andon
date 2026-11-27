@@ -23,9 +23,14 @@ andon/
 ├── apps/
 │   ├── mac/        macOS アプリ（SwiftPM。iOS を足すときは apps/ios と共有の library target を作る）
 │   └── api/        Cloudflare Worker（Hono）。Claude への問い合わせの代理と概念カードの保存を持つ予定
-└── docs/
-    ├── prd/        機能ごとの要件・設計書（構造は prd/README.md）
-    └── adr/        戻すのが難しい判断（構造は adr/README.md）
+├── assets/
+│   └── logo/       ロゴの SVG（design.md の Logo 節から生成。直接編集しない）
+├── tools/
+│   └── logo/       ロゴの SVG の生成 script（`uv run tools/logo/build.py`）
+├── docs/
+│   ├── prd/        機能ごとの要件・設計書（構造は prd/README.md）
+│   └── adr/        戻すのが難しい判断（構造は adr/README.md）
+└── design.md       視覚の正本（いまは Logo だけが決まっている）
 ```
 
 docs/ は共有文書として Git で管理する。個人のメモは gitignore される `.agent/` に置く。
