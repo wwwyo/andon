@@ -1,4 +1,9 @@
-# Andon
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/logo/andon-logo-dark.svg">
+    <img src="assets/logo/andon-logo.svg" alt="Andon" height="56">
+  </picture>
+</h1>
 
 [![CI](https://github.com/wwwyo/andon/actions/workflows/ci.yml/badge.svg)](https://github.com/wwwyo/andon/actions/workflows/ci.yml)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
