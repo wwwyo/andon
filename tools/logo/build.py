@@ -26,7 +26,8 @@ FONT_SHA256 = "fe24426b9c8b5523a0146a8235c8674eccf0493af354a53ec895c3596d9eb745"
 TRACKING = 0
 KERN = [-15, -5, -15, -15]  # A-n, n-d, d-dot, dot-n
 SYM_GAP = 220
-SYM_Y = -80  # + moves the symbol up; 0 = book bottom on the baseline
+SYM_Y = -80  # + moves the symbol up; 0 = bottom of the symbol's 40-unit box (y=58) on the baseline.
+#              -80 puts the symbol's visual centre on the cap-height centre (design.md).
 DOT = 90  # % of the o's outer height
 SYM_SCALE = 1.25  # symbol height / cap height
 
@@ -65,7 +66,7 @@ def shape(path):
     buf = hb.Buffer()
     buf.add_str("Andon")
     buf.guess_segment_properties()
-    hb.shape(font, buf, {"kern": True, "liga": False})
+    hb.shape(font, buf, {"kern": False, "liga": False})
     order = tt.getGlyphOrder()
     glyphs = []
     for info, pos in zip(buf.glyph_infos, buf.glyph_positions):

@@ -1,6 +1,6 @@
 # Design — Andon
 
-Locked design system。この repo の視覚値の正本。値を変えるときはこのファイルだけを編集し、派生物（`assets/logo/` の SVG など）は再生成する。
+Locked design system。この repo の視覚値の正本。値を変えるときはこのファイルを編集し、派生物（`assets/logo/` の SVG など）は生成 script の値も合わせて再生成する。
 
 いまは Logo だけが決まっている。色・文字・余白などの token、component、icon、motion は未制定で、UI を作る段階で設計してこのファイルに足す。
 
@@ -44,7 +44,7 @@ UI の token（`--background`・`--primary` など）は未制定。いま決ま
   - 字の色: ライト `#2b2420`、ダーク `#e6edf3`
   - 字間（全体）0。ペア別の詰め（1 字の高さ = 1000 の単位）: A–n −15、n–d −5、d–● −15、●–n −15
   - 頭文字だけ大文字（Andon）。改行しない。OpenType feature は使わない
-  - 記号と組むとき: 記号の高さは大文字の高さ（700）の 1.25 倍。記号と文字の間は 220。記号は、本の底が文字のベースラインにそろう位置から 80 下げ、記号の上下の中心を大文字の高さの中心にそろえる
+  - 記号と組むとき: 記号の高さは大文字の高さ（700）の 1.25 倍。記号と文字の間は 220。記号の見た目の上下の中心（灯りの上端から本の底の縁まで）を大文字の高さの中心にそろえる。このとき本の底の縁はベースラインの約 36 下に出る
 - Usage: 記号つきの横組み（logo）を基本にし、README の見出し・アプリのウィンドウ・Web のヘッダーに使う。正方形の場所（アプリアイコン・favicon・avatar）は記号単体（symbol）。記号を置けない横長の小さい場所は文字だけ（wordmark）。最小サイズは記号単体 16px、記号つきの横組みは高さ 20px、文字だけは高さ 16px。アプリアイコンは macOS の角丸の地に記号を載せる（地の色は未制定）
 - Assets: `assets/logo/` — `andon-logo.svg`・`andon-symbol.svg`・`andon-wordmark.svg` と、それぞれのダーク版 `-dark.svg`。背景は透明。clearspace は記号の目の直径 ×2 以上を四方に空ける。字形は Zen Maru Gothic から作った輪郭で、OFL の本文を `assets/logo/OFL-ZenMaruGothic.txt` に置く
 
