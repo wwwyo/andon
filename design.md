@@ -1,6 +1,6 @@
 # Design — Andon
 
-Locked design system。この repo の視覚値の正本。値を変えるときはこのファイルを編集し、派生物（`assets/logo/` の SVG など）は生成 script の値も合わせて再生成する。
+Locked design system。この repo の視覚値の正本。値を変えるときはこのファイルを編集し、派生物（`assets/logo/` の SVG など）を作り直す。
 
 いまは Logo だけが決まっている。色・文字・余白などの token、component、icon、motion は未制定で、UI を作る段階で設計してこのファイルに足す。
 
@@ -52,7 +52,7 @@ UI の token（`--background`・`--primary` など）は未制定。いま決ま
 - 未制定
 
 ## Exports
-- `assets/logo/*.svg` は本ファイルの Logo 節の値から `uv run tools/logo/build.py` で生成する。直接編集せず、値を変えたら `tools/logo/build.py` の定数も合わせて再生成する
+- `assets/logo/*.svg` は本ファイルの Logo 節の値で作った成果物。値を変えたら、本ファイルを直してから SVG を作り直す
 
 ## Notes
 - symbol は行灯（A〜C）・本を混ぜた案（D〜H）・avatar 型（I〜M）から M を選び、目を本に向けて（M4）頭を傾けた R2 にした。左右対称の M4 より、傾きと対角の目線で「本に見入っている」姿勢が出る
